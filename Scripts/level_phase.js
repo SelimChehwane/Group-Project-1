@@ -4,48 +4,48 @@ class Levels extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('homeIcon', 'Assets/Icons/home.png'); 
-        this.load.image('volumeIcon', 'Assets/Icons/volume.png'); 
+        this.load.image('homeIcon', 'Assets/Icons/home.png');
+        this.load.image('volumeIcon', 'Assets/Icons/volume.png');
         this.load.image('volumeDownIcon', 'Assets/Icons/volume-mute.png');
-        // this.load.audio('backgroundMusic', 'assets/Music/warped vehicles.mp3'); 
+        this.load.audio('backgroundMusic', 'Assets/Music/warped vehicles.mp3');
     }
 
     create() {
-        // backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.5 });
-        // backgroundMusic.play();
+        let backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.25 });
+        backgroundMusic.play();
 
-        const levelsText = this.add.text(610, 20, "Levels", { 
-            font: "48px gameFont", 
+        const levelsText = this.add.text(610, 20, "Levels", {
+            font: "48px gameFont",
             fill: "#ffffff"
         });
 
         const homeIcon = this.add.image(levelsText.x + levelsText.width + 40, levelsText.y + levelsText.height / 2, 'homeIcon')
-            .setOrigin(20 , 0.5)
+            .setOrigin(20, 0.5)
             .setInteractive();
 
-        homeIcon.setScale(0.15); 
+        homeIcon.setScale(0.15);
 
-        const volumeIcon = this.add.image(levelsText.x + levelsText.width , levelsText.y + levelsText.height / 2, 'volumeIcon')
+        const volumeIcon = this.add.image(levelsText.x + levelsText.width, levelsText.y + levelsText.height / 2, 'volumeIcon')
             .setOrigin(-11.7, 0.5)
             .setInteractive();
 
-        volumeIcon.setScale(0.09); 
+        volumeIcon.setScale(0.09);
 
-        const volumeDownIcon = this.add.image(levelsText.x + levelsText.width , levelsText.y + levelsText.height / 2, 'volumeDownIcon')
+        const volumeDownIcon = this.add.image(levelsText.x + levelsText.width, levelsText.y + levelsText.height / 2, 'volumeDownIcon')
             .setOrigin(-15, 0.5)
             .setInteractive();
 
-            volumeDownIcon.setScale(0.14);
-        
-            volumeDownIcon.visible=false;
+        volumeDownIcon.setScale(0.14);
+
+        volumeDownIcon.visible = false;
 
         homeIcon.on('pointerdown', () => {
             console.log('Home icon clicked');
         });
 
         const levels = ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"];
-        const levelSpacingX = 250; 
-        const levelSpacingY = 150; 
+        const levelSpacingX = 250;
+        const levelSpacingY = 150;
         const levelsPerRow = 3;
         const startX = this.cameras.main.width / 2 - (levelsPerRow - 1) * levelSpacingX / 2;
         const startY = this.cameras.main.height / 2 - (Math.ceil(levels.length / levelsPerRow) - 1) * levelSpacingY / 2;
@@ -56,17 +56,17 @@ class Levels extends Phaser.Scene {
             let x = startX + col * levelSpacingX;
             let y = startY + row * levelSpacingY;
 
-            let levelText = this.add.text(x, y, level, { 
+            let levelText = this.add.text(x, y, level, {
                 fontFamily: "gameFont",
                 fontSize: "40px",
                 fill: "#ffffff"
             })
-            .setOrigin(0.5)
-            .setInteractive();
+                .setOrigin(0.5)
+                .setInteractive();
 
             // Add hover effect
             levelText.on('pointerover', () => {
-                levelText.setStyle({ fill: '#ffcc00'});
+                levelText.setStyle({ fill: '#ffcc00' });
             });
 
             levelText.on('pointerout', () => {
@@ -80,20 +80,32 @@ class Levels extends Phaser.Scene {
         });
 
         volumeIcon.setInteractive();
-        volumeIcon.on('pointerdown', function() {
+        volumeIcon.on('pointerdown', function () {
             // Toggle visibility of icons
             volumeIcon.visible = false;
             volumeDownIcon.visible = true;
         });
-    
+
         // Set interactive for icon2
         volumeDownIcon.setInteractive();
-        volumeDownIcon.on('pointerdown', function() {
+        volumeDownIcon.on('pointerdown', function () {
             // Toggle visibility of icons
             volumeIcon.visible = true;
             volumeDownIcon.visible = false;
         });
+
+        volumeIcon.on('pointerdown', toggleMute, this);
+        function toggleMute() {
+            if (backgroundMusic.isPlaying) {
+                backgroundMusic.stop();
+                muteButton.setTint(0xff0000); // Visual feedback: tint button red when muted
+            } else {
+                backgroundMusic.play();
+                muteButton.clearTint(); // Clear tint when unmuted
+            }
+        }
+
+        volumeDownIcon.on('pointerdown', toggleMute, this)
     }
 
-    
 }
