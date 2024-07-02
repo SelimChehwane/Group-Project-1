@@ -1,6 +1,12 @@
-html, body {
+@font-face {
+  font-family: gameFont;
+  src: url(Assets/Fonts/COSMDD__.TTF) ;
+}
+*{
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  font-family: gameFont;
 }
 
 canvas {
