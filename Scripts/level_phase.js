@@ -5,11 +5,16 @@ class Levels extends Phaser.Scene {
 
     preload() {
         this.load.image('homeIcon', 'Assets/Icons/home.png'); 
+        this.load.image('volumeIcon', 'Assets/Icons/volume.png'); 
+        this.load.image('volumeDownIcon', 'Assets/Icons/volume-mute.png');
+        // this.load.audio('backgroundMusic', 'assets/Music/warped vehicles.mp3'); 
     }
 
     create() {
-        // Position and add the "Levels" text
-        const levelsText = this.add.text(610, 50, "Levels", { 
+        // backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.5 });
+        // backgroundMusic.play();
+
+        const levelsText = this.add.text(610, 20, "Levels", { 
             font: "48px gameFont", 
             fill: "#ffffff"
         });
@@ -19,6 +24,20 @@ class Levels extends Phaser.Scene {
             .setInteractive();
 
         homeIcon.setScale(0.15); 
+
+        const volumeIcon = this.add.image(levelsText.x + levelsText.width , levelsText.y + levelsText.height / 2, 'volumeIcon')
+            .setOrigin(-11.7, 0.5)
+            .setInteractive();
+
+        volumeIcon.setScale(0.09); 
+
+        const volumeDownIcon = this.add.image(levelsText.x + levelsText.width , levelsText.y + levelsText.height / 2, 'volumeDownIcon')
+            .setOrigin(-15, 0.5)
+            .setInteractive();
+
+            volumeDownIcon.setScale(0.14);
+        
+            volumeDownIcon.visible=false;
 
         homeIcon.on('pointerdown', () => {
             console.log('Home icon clicked');
@@ -47,7 +66,7 @@ class Levels extends Phaser.Scene {
 
             // Add hover effect
             levelText.on('pointerover', () => {
-                levelText.setStyle({ fill: '#ffcc00' });
+                levelText.setStyle({ fill: '#ffcc00'});
             });
 
             levelText.on('pointerout', () => {
@@ -59,9 +78,22 @@ class Levels extends Phaser.Scene {
                 this.selectLevel(level);
             });
         });
+
+        volumeIcon.setInteractive();
+        volumeIcon.on('pointerdown', function() {
+            // Toggle visibility of icons
+            volumeIcon.visible = false;
+            volumeDownIcon.visible = true;
+        });
+    
+        // Set interactive for icon2
+        volumeDownIcon.setInteractive();
+        volumeDownIcon.on('pointerdown', function() {
+            // Toggle visibility of icons
+            volumeIcon.visible = true;
+            volumeDownIcon.visible = false;
+        });
     }
 
-    selectLevel(level) {
-        console.log(`Selected: ${level}`);
-    }
+    
 }
