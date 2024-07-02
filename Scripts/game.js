@@ -1,12 +1,19 @@
-let height = window.innerHeight
-let width =window.innerWidth
+let height = window.innerHeight;
+let width = window.innerWidth;
 
-let config ={
-    type:Phaser.AUTO,
-    width : width,
-    height : height,
-    backgroundColor:'#301934',
-    scene: [Levels]
-}
+let config = {
+    type: Phaser.AUTO,
+    width: width,
+    height: height,
+    backgroundColor: '#301934',
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
+    scene: [level2]
+};
 
-    let game =new Phaser.Game(config); 
+let game = new Phaser.Game(config);

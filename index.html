@@ -8,12 +8,16 @@
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser-arcade-physics.min.js"></script>
+    <!-- Including Phaser library from CDN -->
     <script src="Scripts/phaser.min.js"></script>
-    <script src="Scripts/level_phase.js"></script>
-    <script src="Scripts/game.js"></script>
+    <!-- Ensure your Phaser scripts are included after the library -->
 </head>
 <body>
+    <!-- Your game canvas will be placed here by Phaser -->
     
+    <!-- Game scripts should be included at the end of the body to ensure the DOM is ready -->
+    <script src="Scripts/level2.js"></script>
+    <script src="Scripts/game.js"></script>
     <script src="Scripts/landingPage.js"></script>
 </body>
 </html>
