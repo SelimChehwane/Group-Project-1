@@ -16,7 +16,7 @@ class Levels extends Phaser.Scene {
         this.background.setOrigin(0, 0).setScale(0.5);
 
         let backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.25 });
-        // backgroundMusic.play();
+        backgroundMusic.play();
 
         const levelsText = this.add.text(580, 20, "Levels", {
             font: "48px",
