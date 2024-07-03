@@ -1,4 +1,3 @@
-
 const config = {
   type: Phaser.AUTO,
   width: 1920,
@@ -14,7 +13,7 @@ const config = {
       gravity: {y:200},
     }
   },
-  
+  scenes:[level2]
 }
 const game = new Phaser.Game(config);
 

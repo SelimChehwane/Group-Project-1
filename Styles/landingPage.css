@@ -1,0 +1,62 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.cdnfonts.com/css/cosmic-dude');
+
+
+#canvas1 {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #253A5E;
+    z-index: -1;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+.title{
+    height: 130px;
+    color: white;
+    font-size: 64px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cosmic Dude Demo',sans-serif;
+    flex-direction: column;
+}
+.btn-container{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.display-none{
+    display: none;
+}
+
+.btn{
+    padding: 10px 30px;
+    font-family: 'Cosmic Dude Demo', sans-serif;
+    font-size: 24px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.233);
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
