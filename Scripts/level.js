@@ -168,10 +168,10 @@ class LevelOne extends Phaser.Scene {
         }
 
 
-        if((this.player.x >=494 && this.player.x<=505) && (this.player.y<=166 && this.player.y>=155)){
+        if((this.player.x >=469&& this.player.x<=513) && (this.player.y<=166 && this.player.y>=155)){
         this.onButtonTouch(this.player , this.button)
         }
-        if((this.player2.x >=494 && this.player2.x<=505) && (this.player2.y<=166&& this.player2.y>=155)){
+        if((this.player2.x >=469 && this.player2.x<=513) && (this.player2.y<=166&& this.player2.y>=155)){
         this.onButtonTouch(this.player2 , this.button)
         }
 
