@@ -46,7 +46,7 @@ class Levels extends Phaser.Scene {
             console.log('Home icon clicked');
         });
 
-        const levels = ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"];
+        const levels = ["Level 1", "Level 2", "Level 3"];
         const levelSpacingX = 320;
         const levelSpacingY = 150;
         const levelsPerRow = 3;
@@ -145,10 +145,9 @@ class Levels extends Phaser.Scene {
         );
         gameOverText.setOrigin(0.5, 0.5);
     
-        // Optional: Stop the game or any further interaction
         this.physics.pause();
-        player.setTint(0xff0000); // Change player color to red
-        player.anims.play('turn'); // Stop player animation
+        player.setTint(0xff0000);
+        player.anims.play('turn'); 
     }
     
 }
