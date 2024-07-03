@@ -59,23 +59,14 @@ window.addEventListener('load', () => {
     const layer5 = new Layer(bg5, 0.1);
     layer5.set_height(180)
 
-    const layers=[layer0, layer1, layer2, layer3, layer4, layer5,]
-
+    const layers=[layer5, layer4, layer3, layer2, layer1, layer0,]
 
     const animate = () => {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        layer5.update();
-        layer5.draw();
-        layer4.update();
-        layer4.draw();
-        layer3.update();
-        layer3.draw();
-        layer2.update();
-        layer2.draw();
-        layer1.update();
-        layer1.draw();
-        layer0.update();
-        layer0.draw();
+        layers.forEach((layer) => {
+            layer.update()
+            layer.draw()
+        });
         gameFrame--;
         requestAnimationFrame(animate);
     };
@@ -90,6 +81,6 @@ window.addEventListener('load', () => {
         title.classList.remove('display-none')
         main.classList.remove('display-none')
     });
-    
+
     animate() 
 });
