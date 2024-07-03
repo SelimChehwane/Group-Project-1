@@ -1,14 +1,16 @@
-@font-face {
-  font-family: gameFont;
-  src: url(Assets/Fonts/COSMDD__.TTF) ;
-}
 *{
   margin: 0;
   padding: 0;
   overflow: hidden;
   font-family: gameFont;
+  background-color: #301934;
 }
 
 canvas {
   display: block;
 }
+/* 
+#canvas-container{
+  height: 400px;
+  width: 400px;
+} */

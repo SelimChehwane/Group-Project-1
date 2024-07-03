@@ -13,7 +13,7 @@ let config = {
             debug: false
         }
     },
-    scene: [level2]
+    scene: [Levels, LevelOne , level2]
 };
 
 let game = new Phaser.Game(config);
