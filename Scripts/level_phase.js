@@ -80,7 +80,7 @@ class Levels extends Phaser.Scene {
 
                 this.cameras.main.once('camerafadeoutcomplete', () => {
                     this.scene.transition({
-                        target: 'level',
+                        target: `level${index+1}`,
                         duration: 50,
                         moveBelow: true,
                         onUpdate: this.transitionOut,
@@ -135,4 +135,20 @@ class Levels extends Phaser.Scene {
             }
         }
     }
+
+    showGameOver(player, button) {
+        let gameOverText = this.add.text(
+            this.cameras.main.centerX, 
+            this.cameras.main.centerY, 
+            'Game Over', 
+            { fontSize: '64px', fill: '#fff' }
+        );
+        gameOverText.setOrigin(0.5, 0.5);
+    
+        // Optional: Stop the game or any further interaction
+        this.physics.pause();
+        player.setTint(0xff0000); // Change player color to red
+        player.anims.play('turn'); // Stop player animation
+    }
+    
 }
