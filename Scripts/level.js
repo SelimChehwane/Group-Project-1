@@ -96,7 +96,7 @@ class LevelOne extends Phaser.Scene {
 
         // Create button and size 
         this.button = this.physics.add.staticSprite(500, 180, "spike").setScale(0.1);
-        this.button2 = this.physics.add.staticSprite(1130, 150, "spike").setScale(0.06);
+        
 
         // Create door1
         this.add.image(80, 80, "doors1").setScale(0.5);
@@ -175,18 +175,9 @@ class LevelOne extends Phaser.Scene {
         this.onButtonTouch(this.player2 , this.button)
         }
 
-        if((this.player.x >=1110 && this.player.x <=1127) && (this.player.y <=127 && this.player>=126)){
-            this.onButtonTouch(this.player, this.button2)
-        }
-
-        if((this.player2.x >=1110 && this.player2.x <=1127) && (this.player2.y <=127 && this.player2>=126)){
-            this.onButtonTouch(this.player2, this.button2)
-        }
         if((this.player.x <=90 && this.player.y>=96) && (this.player2.x >=1270 && this.player2.y<=126)){
         this.onDoorTouch()
         }
-        console.log(this.player2.x)
-        console.log(this.player2.y)
 
 
         

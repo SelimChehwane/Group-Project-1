@@ -15,7 +15,7 @@ class Levels extends Phaser.Scene {
         this.background = this.add.image(-10, -100, "background");
         this.background.setOrigin(0, 0).setScale(0.5);
 
-        let backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.25 });
+        let backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.05 });
         backgroundMusic.play();
 
         const levelsText = this.add.text(580, 20, "Levels", {
@@ -43,7 +43,7 @@ class Levels extends Phaser.Scene {
         volumeDownIcon.visible = false;
 
         homeIcon.on('pointerdown', () => {
-            console.log('Home icon clicked');
+
         });
 
         const levels = ["Level 1", "Level 2", "Level 3"];
