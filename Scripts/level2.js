@@ -115,7 +115,7 @@ class level2 extends Phaser.Scene {
         }
 
         // Create button and size 
-        this.button = this.physics.add.staticSprite(1450, 480, "Xbutton-out").setScale(0.11);
+        this.button = this.physics.add.staticSprite(1450, 480, "Xbutton-out").setScale(0.11).refreshBody();
 
         // Create door1 
         this.add.image(1350, 80, "doors1").setScale(0.5);
@@ -144,11 +144,10 @@ class level2 extends Phaser.Scene {
          this.player2 = this.physics.add.sprite(450, 300, "test2").setScale(2);
           this.player2.setCollideWorldBounds(true);
           this.physics.add.collider(this.player2, this.platforms);
-          this.physics.add.collider(this.player2, this.box);
+          this.physics.add.collider(this.player2, this.elevatorTiles);
 
-
-
-
+        // Overlap event for player2
+        this.physics.add.overlap(this.player2, this.button, this.moveElevator, null, this);
     }
 
     update() {
@@ -156,18 +155,18 @@ class level2 extends Phaser.Scene {
         // player1  controles 
         if (this.cursors.left.isDown) {
             this.player1.setVelocityX(-160);
-            this.player1.setFlipX( true);
+            this.player1.setFlipX(true);
         } else if (this.cursors.right.isDown) {
             this.player1.setVelocityX(160);
             this.player1.setFlipX(false);
         } else {
             this.player1.setVelocityX(0);
-            
         }
 
         if (this.cursors.up.isDown && this.player1.body.touching.down) {
             this.player1.setVelocityY(-300);
         }
+
         // player 2 controls 
         if (this.keyboard.a.isDown) {
             this.player2.setVelocityX(-160);
@@ -184,7 +183,11 @@ class level2 extends Phaser.Scene {
           }
 
 
-
+          if(((this.player1.x >1360) && this.player1.y>=80) && ((570<this.player2.x <600) &&  this.player2.y<=346)){
+            this.onDoorTouch()
+          }
+    
+      
 
     }
 
@@ -203,12 +206,13 @@ class level2 extends Phaser.Scene {
             targets: this.elevatorTiles.getChildren(),
             y: '-=' + desiredHeight,
             ease: 'Linear',
-            duration: 2000, // Duration set to 1000 milliseconds (1 second)
+            duration: 2000, // Duration set to 2000 milliseconds (2 seconds)
             onStart: () => {
                 this.elevatorMoved = true; // Set flag to indicate elevator has moved
             },
             onUpdate: () => {
                 this.physics.world.collide(this.player1, this.elevatorTiles);
+                this.physics.world.collide(this.player2, this.elevatorTiles); // Add collision check for player2
             },
             onComplete: () => {
                 // Stop the elevator at the specified stopY coordinate
@@ -225,4 +229,80 @@ class level2 extends Phaser.Scene {
         // Deactivate button after it has been pressed
         this.physics.world.removeCollider(this.overlapCollider);
     }
+
+    onDoorTouch() {
+        this.showPopup('You Win!');
+        this.physics.pause(); 
+    }
+
+
+
+    showPopup(message) {
+        // Create a container for the popup
+        const popupContainer = this.add.container(400, 300);
+
+        // Add a background rectangle
+        const background = this.add.rectangle(0, 0, 400, 200, 0x000000, 0.8);
+        popupContainer.add(background);
+
+        // Add text for the message
+        const popupText = this.add.text(0, -30, message, {
+            fontSize: '24px',
+            color: '#ffffff',
+            align: 'center',
+            wordWrap: { width: 280, useAdvancedWrap: true }
+        });
+        popupText.setOrigin(0.5);
+        popupContainer.add(popupText);
+
+        // Add buttons based on the message
+        let button1Text, button2Text, button1Action, button2Action;
+        let backToHome =false;
+
+        if (message === 'You Win!') {
+            button1Text = 'Continue';
+            button2Text = 'Back Home';
+            button1Action = () => this.scene.start('nextLevel')
+            button2Action = () => this.scene.start('levelSelect');
+        } else {
+            button1Text = 'Retry';
+            button2Text = 'Back Home';
+            button1Action = () => this.scene.restart();
+            button2Action = () => this.scene.start('levelSelect');
+        }
+
+        // Create buttons
+        const button1 = this.add.text(-100, 50, button1Text, {
+            fontSize: '18px',
+            color: '#ffffff',
+            backgroundColor: '#ff0000',
+            padding: { left: 10, right: 10, top: 5, bottom: 5 }
+        }).setInteractive().on('pointerdown', () => {
+            button1Action();
+            popupContainer.destroy();
+        });
+        button1.setOrigin(0.5);
+        popupContainer.add(button1);
+
+        const button2 = this.add.text(100, 50, button2Text, {
+            fontSize: '18px',
+            color: '#ffffff',
+            backgroundColor: '#0000ff',
+            padding: { left: 10, right: 10, top: 5, bottom: 5 }
+        }).setInteractive().on('pointerdown', () => {        
+            button2Action();
+            popupContainer.destroy();
+        });
+        button2.setOrigin(0.5);
+        popupContainer.add(button2);
+
+        // Center the container on the screen
+        Phaser.Display.Align.In.Center(popupContainer, this.add.zone(window.innerWidth/2, 300, 800, 600));
+
+        // Add the popup container to the scene
+        this.add.existing(popupContainer);
+    }
+
+
+    
 }
