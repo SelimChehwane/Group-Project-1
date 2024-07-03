@@ -2,6 +2,11 @@ const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width;
 const CANVAS_HEIGHT = canvas.height;
+const instructions_btn = document.getElementById('instructions-btn');
+const main = document.getElementById('main-btn-container');
+const instructions_container = document.getElementById('instructions-container');
+const back_btn = document.getElementById('back');
+const title=document.getElementById('title');
 
 let speed = 1
 let gameFrame=0
@@ -54,6 +59,9 @@ window.addEventListener('load', () => {
     const layer5 = new Layer(bg5, 0.1);
     layer5.set_height(180)
 
+    const layers=[layer0, layer1, layer2, layer3, layer4, layer5,]
+
+
     const animate = () => {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         layer5.update();
@@ -71,5 +79,17 @@ window.addEventListener('load', () => {
         gameFrame--;
         requestAnimationFrame(animate);
     };
+    
+    instructions_btn.addEventListener('click', () => {
+        main.classList.add('display-none')
+        title.classList.add('display-none')
+        instructions_container.classList.remove('display-none');
+    });
+    back_btn.addEventListener('click', () => {
+        instructions_container.classList.add('display-none');
+        title.classList.remove('display-none')
+        main.classList.remove('display-none')
+    });
+    
     animate() 
 });
