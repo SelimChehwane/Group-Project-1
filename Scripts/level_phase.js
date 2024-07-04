@@ -13,7 +13,7 @@ class Levels extends Phaser.Scene {
 
     create() {
         this.background = this.add.image(-10, -100, "background");
-        this.background.setOrigin(0, 0).setScale(0.5);
+        this.background.setOrigin(0, 0).setScale(0.8);
 
         let backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.05 });
         backgroundMusic.play();
