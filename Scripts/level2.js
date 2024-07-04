@@ -148,6 +148,7 @@ class level2 extends Phaser.Scene {
 
         // Overlap event for player2
         this.physics.add.overlap(this.player2, this.button, this.moveElevator, null, this);
+        this.elevatorMoved=false;
     }
 
     update() {
@@ -181,15 +182,18 @@ class level2 extends Phaser.Scene {
           if (this.keyboard.w.isDown && this.player2.body.touching.down) {
             this.player2.setVelocityY(-300);
           }
+ // Check if both players are at their respective doors
+ if (this.isPlayerAtDoor(this.player1, { x: 1350, y: 80 }, 30) && this.isPlayerAtDoor(this.player2, { x: 570, y: 330 }, 30)) {
+    this.onDoorTouch();
+}
+}
+
+isPlayerAtDoor(player, doorPosition, threshold) {
+const distance = Phaser.Math.Distance.Between(player.x, player.y, doorPosition.x, doorPosition.y);
+return distance < threshold;
+}
 
 
-          if(((this.player1.x >1360) && this.player1.y>=80) && ((570<this.player2.x <600) &&  this.player2.y<=346)){
-            this.onDoorTouch()
-          }
-    
-      
-
-    }
 
     moveElevator(player, button) {
         const desiredHeight = 330; // Move elevator up by 330 units
