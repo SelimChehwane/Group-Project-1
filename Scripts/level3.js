@@ -205,9 +205,7 @@ class level3 extends Phaser.Scene {
       this.player2.setVelocityY(-300);
     }
 
-    if((this.player.x <=90 && this.player.y>=96) && (this.player2.x >=1270 && this.player2.y<=126)){
-      this.onDoorTouch()
-      }
+    
   }
   onDoorTouch() {
     this.showPopup('You Win!');

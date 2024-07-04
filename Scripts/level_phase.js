@@ -4,11 +4,11 @@ class Levels extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('homeIcon', 'Assets/Icons/home.png');
-        this.load.image('volumeIcon', 'Assets/Icons/volume.png');
-        this.load.image('volumeDownIcon', 'Assets/Icons/volume-mute.png');
-        this.load.image('background', 'Assets/Images/background.jpg');
-        this.load.audio('backgroundMusic', 'Assets/Music/warped vehicles.mp3');
+        this.load.image('homeIcon', '../Assets/Icons/home.png');
+        this.load.image('volumeIcon', '../Assets/Icons/volume.png');
+        this.load.image('volumeDownIcon', '../Assets/Icons/volume-mute.png');
+        this.load.image('background', '../Assets/Images/background.jpg');
+        this.load.audio('backgroundMusic', '../Assets/Music/warped vehicles.mp3');
     }
 
     create() {
