@@ -4,20 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="Styles/style.css">
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser-arcade-physics.min.js"></script>
-    <script src="Scripts/level.js"></script>
-    <script src="Scripts/level_phase.js"></script>
-</head>
-<body>
-    <!-- Your game canvas will be placed here by Phaser -->
+    <link rel="stylesheet" href="Styles/landingPage.css" />
+  </head>
+  <body>
+    <canvas id="canvas1"></canvas>
+      <h1 class="title" id="title">BOSS</h1>
+      <div class="btn-container" id="main-btn-container">
+        <button class="btn"><a href="./pages/game.html">Play</a></button>
+        <button class="btn" id="instructions-btn">Instructions</button>
+      </div>
+      <div class="instructions-container display-none" id="instructions-container">
+        <div class="up">
+          <div class="left">
+            <div class="player">
+              <h1>Player 1</h1>
+            </div>
+            <div class="keybinds">
+              <h3>W: Jump</h3>
+              <h3>A: Left</h3>
+              <h3>D: Right</h3>
+            </div>
+          </div>
+          <div class="right">
+            <div class="player">
+              <h1>Player 2</h1>
+            </div>
+            <div class="keybinds">
+              <h3>&uarr;: Jump</h3>
+              <h3>&larr;: Left</h3>
+              <h3>&rarr;: Right</h3>
+            </div>
+          </div>
+        </div>
+        <div class="down">
+          <button class="btn" id="back">Back</button>
+        </div>
+      </div>
+      <script src="./Scripts/landingPage.js"></script>
+    </body>
+    </html>
     
-    <!-- Game scripts should be included at the end of the body to ensure the DOM is ready -->
-    <script src="Scripts/level2.js"></script>
-    <script src="Scripts/level3.js"></script>
-    <script src="Scripts/game.js"></script>
-    <script src="Scripts/landingPage.js"></script>
-</body>
-</html>
