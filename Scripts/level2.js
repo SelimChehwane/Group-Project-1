@@ -4,19 +4,19 @@ class level2 extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("tile", "../Assets/Images/lvl2-tiles/tile.png");
-        this.load.image("tfloat", "../Assets/Images/lvl2-tiles/tfloat.png");
-        this.load.image("Xbutton-out", "../Assets/Images/lvl2-tiles/Xbutton-out.png");
-        this.load.image("Xbutton-in", "../Assets/Images/lvl2-tiles/Xbutton-in.png");
-        this.load.image("doors1", "../Assets/Images/lvl2-tiles/doors1.png");
-        this.load.image("doors2", "../Assets/Images/lvl2-tiles/doors2.png");
-        this.load.image("base", "../Assets/Images/lvl2-tiles/base.png");
-        this.load.image("elevator-tile", "../Assets/Images/lvl2-tiles/elevator-tile.png");
-        this.load.spritesheet("test", "../Assets/Images/lvl2-tiles/test.png", { 
+        this.load.image("tile", "/Assets/Images/tile.png");
+        this.load.image("tfloat", "/Assets/Images/tfloat.png");
+        this.load.image("Xbutton-out", "/Assets/Images/Xbutton-out.png");
+        this.load.image("Xbutton-in", "/Assets/Images/Xbutton-in.png");
+        this.load.image("doors1", "/Assets/Images/doors1.png");
+        this.load.image("doors2", "/Assets/Images/doors2.png");
+        this.load.image("base", "/Assets/Images/base.png");
+        this.load.image("elevator-tile", "/Assets/Images/elevator-tile.png");
+        this.load.spritesheet("test", "/Assets/Images/test.png", { 
             frameWidth: 40,
             frameHeight: 40,
         });
-        this.load.spritesheet("test2", "/..Assets/Images/test2.png", { 
+        this.load.spritesheet("test2", "/Assets/Images/test2.png", { 
             frameWidth: 40,
             frameHeight: 40,
         });
