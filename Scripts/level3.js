@@ -1,6 +1,6 @@
 class level3 extends Phaser.Scene {
   constructor() {
-    super("bootGame");
+    super("level3");
   }
 
   preload() {
@@ -205,14 +205,18 @@ class level3 extends Phaser.Scene {
       this.player2.setVelocityY(-300);
     }
 
-    const player1AtDoor1 = this.player1.x == 100 && this.player1.y >= 180;
-    const player2AtDoor2 = this.player2.x == 1440  && this.player2.y >= 590;
-
-    // Trigger popup when both players are at their respective doors
-    if (player1AtDoor1 && player2AtDoor2) {
-      this.showPopup("You Win!"); // Adjust the message as needed
-    }
+    if((this.player.x <=90 && this.player.y>=96) && (this.player2.x >=1270 && this.player2.y<=126)){
+      this.onDoorTouch()
+      }
   }
+  onDoorTouch() {
+    this.showPopup('You Win!');
+    this.physics.pause(); // Optional: Pause the game
+    // player.setTint(0x00ff00); // Optional: Change player color to green
+    // player.anims.play('turn'); // Optional: Stop player animation
+    // player2.setTint(0x00ff00); // Optional: Change player color to green
+    // player2.anims.play('turn'); // Optional: Stop player animation
+}
   openGate(player, button2) {
     // Check if the gate has already opened
     if (this.gateOpened) {

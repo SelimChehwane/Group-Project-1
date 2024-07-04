@@ -262,7 +262,7 @@ class level2 extends Phaser.Scene {
         if (message === 'You Win!') {
             button1Text = 'Continue';
             button2Text = 'Back Home';
-            button1Action = () => this.scene.start('nextLevel')
+            button1Action = () => this.scene.start('level3')
             button2Action = () => this.scene.start('levelSelect');
         } else {
             button1Text = 'Retry';
